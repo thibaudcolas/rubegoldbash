@@ -1,0 +1,6 @@
+## Curl
+
+curl ifconfig.me/ip
+curl freegeoip.net/csv/116.193.147.34
+curl "http://api.openweathermap.org/data/2.5/weather?lat=-41.00&lon=174.00&mode=html"
+curl http://api.openweathermap.org/data/2.5/forecast?lat=-41.00&lon=174.00&mode=html"

@@ -22,6 +22,13 @@ TODO DESCRIPTION
 
 ## Built with
 
+
+### Online services
+
+- http://ifconfig.me/
+
+### Command line
+
 - http://patorjk.com/software/taag/#p=display&h=2&v=1&f=Slant&t=RubeGoldBash
 - https://github.com/olizilla/asciify
 - https://github.com/maxogden/cool-ascii-faces
