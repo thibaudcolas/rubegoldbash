@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "cat start.sh | sh",
-    "test": "./start.sh",
+    "test": "cat start.sh | sh",
     "ascii:faces": "cool-face --all | tee ascii-faces.txt",
     "ascii:text": "asciify -a 'RubeGoldBash' | tee ascii-text.txt"
   }
