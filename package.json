@@ -14,10 +14,12 @@
     "url": "https://github.com/ThibWeb/rubegoldbash/issues"
   },
   "devDependencies": {
+    "asciify": "^1.3.5",
     "cool-ascii-faces": "^1.3.3"
   },
   "scripts": {
     "test": "./start.sh",
-    "ascii:faces": "cool-face --all | tee ascii-faces.txt"
+    "ascii:faces": "cool-face --all | tee ascii-faces.txt",
+    "ascii:text": "asciify -a 'RubeGoldBash' | tee ascii-text.txt"
   }
 }

@@ -9,6 +9,9 @@ TODO DESCRIPTION
 
 ## Built with
 
+- https://github.com/olizilla/asciify
+- https://github.com/maxogden/cool-ascii-faces
+
 ## LICENSE [![(CC0)](https://img.shields.io/badge/license-CC0-blue.svg?style=flat-square)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/)
