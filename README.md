@@ -26,6 +26,8 @@ TODO DESCRIPTION
 ### Online services
 
 - http://ifconfig.me/
+- http://openweathermap.org/
+- http://freegeoip.net/
 
 ### Command line
 
