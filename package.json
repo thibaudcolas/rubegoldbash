@@ -1,0 +1,23 @@
+{
+  "name": "rubegoldbash",
+  "version": "0.1.0",
+  "description": "[TODO NAME](TODO URL) [![Build Status](https://img.shields.io/travis/ThibWeb/TODO.svg?style=flat-square)](https://travis-ci.org/ThibWeb/TODO) ==============",
+  "main": "start.sh",
+  "homepage": "https://github.com/ThibWeb/rubegoldbash",
+  "author": "ThibWeb",
+  "license": "CC0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThibWeb/rubegoldbash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ThibWeb/rubegoldbash/issues"
+  },
+  "devDependencies": {
+    "cool-ascii-faces": "^1.3.3"
+  },
+  "scripts": {
+    "test": "./start.sh",
+    "ascii:faces": "cool-face --all | tee ascii-faces.txt"
+  }
+}
