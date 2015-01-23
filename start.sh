@@ -119,5 +119,12 @@ function share() {
   local description="$(whoami)'s RubeGoldBash game — $(date)"
   # , on a $OSTYPE $HOSTTYPE called $HOSTNAME
   echo "${white}Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
-  # curl -v -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists
+  local gist_response=$(curl -v -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
+  local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
+  echo "${white}...${reset}"
+  echo "${white}...Yay! Game uploaded to ${bold}${red}$gist_url${reset}"
+
+  local voice=$([ $[ $RANDOM % 2 ] == 0 ] && echo "Victoria" || echo "Alex")
+  say -v $voice "Yeah! Game uploaded to $gist_url"
+  say -v $voice "Congratulations"
 }
