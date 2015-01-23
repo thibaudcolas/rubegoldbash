@@ -51,6 +51,7 @@ echo "${bold}${cyan}....is now installed!                               ${green}
 echo "\n\n \033[0;32mp.s. Follow us at http://twitter.com/TODO.\033[0m"
 
 # Configure history to work the way we want to.
+rm -f ~/.rubegoldbash_history
 HISTFILE=~/.rubegoldbash_history
 SAVEHIST=0
 HISTIGNORE=ls:'cd:cd -:pwd:exit:date:* --help:ls:'
@@ -106,3 +107,17 @@ export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";
 export PS2;
+
+# Share your results online!
+function share() {
+  # history -c; history -r
+
+  # curl ifconfig.me/host
+  # curl ifconfig.me/ip
+
+  # TODO Add some player comment? / Player name
+  local description="$(whoami)'s RubeGoldBash game — $(date)"
+  # , on a $OSTYPE $HOSTTYPE called $HOSTNAME
+  echo "${white}Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
+  # curl -v -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists
+}
