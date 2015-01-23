@@ -1,5 +1,14 @@
-[TODO NAME](TODO URL) [![Build Status](https://img.shields.io/travis/ThibWeb/TODO.svg?style=flat-square)](https://travis-ci.org/ThibWeb/TODO)
+[RubeGoldBash](TODO URL) [![Build Status](https://img.shields.io/travis/ThibWeb/rubegoldbash.svg?style=flat-square)](https://travis-ci.org/ThibWeb/rubegoldbash)
 ==============
+
+~~~bash
+______         _            _____         _      _                           
+| ___ \       | |          |  __ \       | |    | |     ____             __  
+| |_/ / _   _ | |__    ___ | |  \/  ___  | |  __| |    / __ )____ ______/ /_ 
+|    / | | | ||  _ \  / _ \| | __  / _ \ | | / _  |   / __  / __ // ___/ __ \
+| |\ \ | |_| || |_) ||  __/| |_\ \| (_) || || (_| |  / /_/ / /_/ (__  ) / / /
+\_| \_| \____||____/  \___| \____/ \___/ |_| \____/ /_____/\____/____/_/ /_/ 
+~~~
 
 TODO DESCRIPTION
 
@@ -13,6 +22,7 @@ TODO DESCRIPTION
 
 ## Built with
 
+- http://patorjk.com/software/taag/#p=display&h=2&v=1&f=Slant&t=RubeGoldBash
 - https://github.com/olizilla/asciify
 - https://github.com/maxogden/cool-ascii-faces
 

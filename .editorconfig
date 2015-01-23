@@ -15,3 +15,6 @@ insert_final_newline = true
 # Rules for markdown documents.
 [*.md]
 trim_trailing_whitespace = false
+
+[*.txt]
+trim_trailing_whitespace = false
