@@ -5,6 +5,10 @@ TODO DESCRIPTION
 
 ## Getting Started
 
+~~~bash
+> curl https://raw.githubusercontent.com/ThibWeb/rubegoldbash/master/start.sh | sh
+~~~
+
 ## Contributing
 
 ## Built with
