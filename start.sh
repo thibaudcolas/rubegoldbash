@@ -65,8 +65,9 @@ echo "${bold}${cyan}\_| \_| \____||____/  \___| \____/ \___/ |_| \____/ ${green}
 echo "${bold}${yellow}______________________________________________________________________________${reset}"
 echo "${bold}${cyan}....is now installed! ${rubehappy} Cool, let's get started!${reset}"
 echo ""
-echo "${bold}${rubeeager} I'm ${orange}Rube${yellow}, the command-line guru. Nice to meet you, ${orange}$(whoami)."
-echo "${bold}${rubethinking} Don't you want to type some commands? Let's try some ${white}ls${yellow}, for example."
+echo "${bold}${rubepoker} I'm ${orange}Rube${yellow}, the command-line guru. Nice to meet you, ${orange}$(whoami).${reset}"
+echo "${bold}${rubeeager} Can you do some Rube Goldberg bash for me? A lot of pipes (${white}|${yellow}), please!${reset}"
+echo ""
 
 function calculator() {
   local result="";
@@ -87,6 +88,7 @@ function calculator() {
 
 # Calculates the player score!
 export BESTSCORE=$(calculator 0)
+export FIRST=$(calculator 0)
 function score_game() {
   local combo='|'
   history -a
@@ -106,7 +108,16 @@ function score_game() {
     local rubeface=$rubehappy;
   fi;
 
-  echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE${reset}"
+  if [[ "$FIRST" -eq 0 ]]; then
+    export FIRST=$(calculator 1)
+    echo "${bold}${rubewink} If you need help with commands, try this: ${white}http://explainshell.com/${reset}"
+  else
+    echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE${reset}";
+  fi;
+
+  echo "";
+  echo "${bold}${rubethinking} Let's start with something simple, some ${white}ls -la ~${yellow} for example.${reset}"
+  echo "${bold}${rubeyay} And then we can try some basic piping! ${white}ls -la ~ | grep bash${yellow}.${reset}"
 }
 
 # Configure history to work the way we want to.
@@ -196,8 +207,8 @@ function share() {
   player_history="${player_history//\"/\\\"}"
   player_history="${player_history//\n/\\n}"
   local gist_upload='{"public": true,"description": "'"$description"'","files": {"history.sh": {"content": "'"$player_history"'"}}}'
-  local gist_response=$(curl --silent -X POST -d "$gist_upload" https://api.github.com/gists)
-  # local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
+  #local gist_response=$(curl --silent -X POST -d "$gist_upload" https://api.github.com/gists)
+  local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
   local gist_hash=$(echo $gist_url | cut -d '/' -f 4)
 
@@ -210,8 +221,8 @@ function share() {
   echo "${bold}${red}"    '           |___/                                            ' "${reset}"
   echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
   echo ""
-  curl --silent -X POST --data "player=$(whoami)&score=$BESTSCORE&gist=$gist_hash" http://highscore.rubegoldbash.com/scores.txt | column -s, -t
-  # curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  # curl --silent -X POST --data "player=$(whoami)&score=$BESTSCORE&gist=$gist_hash" http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
   echo "${rubeimpatient}${reset}"
   echo ""
   echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
