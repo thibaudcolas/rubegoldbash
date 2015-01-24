@@ -58,9 +58,8 @@ echo "${bold}${cyan}....is now installed!                               ${green}
 echo "\n\n \033[0;32mp.s. Follow us at http://twitter.com/TODO.\033[0m"
 
 # Configure history to work the way we want to.
-rm -f ~/.rubegoldbash_history
+# rm -f ~/.rubegoldbash_history
 HISTFILE=~/.rubegoldbash_history
-SAVEHIST=0
 HISTIGNORE=ls:'cd:cd -:pwd:exit:date:* --help:ls:'
 HISTTIMEFORMAT='%T %H:%M:%S$'
 HISTSIZE=10000
@@ -126,7 +125,7 @@ function share() {
   local description="$(whoami)'s RubeGoldBash game — $(date)"
   # , on a $OSTYPE $HOSTTYPE called $HOSTNAME
   echo "${white}Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
-  local gist_response=$(curl -v -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
+  local gist_response=$(curl -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
   echo "${white}...${reset}"
   echo "${white}...Yay! Game uploaded to ${bold}${red}$gist_url${reset}"
