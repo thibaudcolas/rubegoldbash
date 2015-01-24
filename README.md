@@ -1,4 +1,4 @@
-[RubeGoldBash](TODO URL) [![Build Status](https://img.shields.io/travis/ThibWeb/rubegoldbash.svg?style=flat-square)](https://travis-ci.org/ThibWeb/rubegoldbash)
+[RubeGoldBash](http://www.rubegoldbash.com) [![Build Status](https://img.shields.io/travis/ThibWeb/rubegoldbash.svg?style=flat-square)](https://travis-ci.org/ThibWeb/rubegoldbash)
 ==============
 
 ~~~bash
@@ -15,13 +15,18 @@ TODO DESCRIPTION
 ## Getting Started
 
 ~~~bash
-> curl https://raw.githubusercontent.com/ThibWeb/rubegoldbash/master/start.sh | sh
+> curl start.rubegoldbash.com | sh
 ~~~
-
-## Contributing
 
 ## Built with
 
+- A lot of Bash
+- ASCII Art!
+- Some Node, Express, MongoDB
+
+- http://heroku.com/
+- http://simplybuilt.com/
+- https://github.com/thibweb/dotfiles
 
 ### Online services
 
@@ -34,6 +39,8 @@ TODO DESCRIPTION
 - http://patorjk.com/software/taag/#p=display&h=2&v=1&f=Slant&t=RubeGoldBash
 - https://github.com/olizilla/asciify
 - https://github.com/maxogden/cool-ascii-faces
+
+## Contributing
 
 ## LICENSE [![(CC0)](https://img.shields.io/badge/license-CC0-blue.svg?style=flat-square)](https://creativecommons.org/publicdomain/zero/1.0/)
 

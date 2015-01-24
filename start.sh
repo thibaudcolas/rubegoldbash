@@ -121,16 +121,32 @@ function share() {
   # curl ifconfig.me/host
   # curl ifconfig.me/ip
 
+  # TODO unstub
+
   # TODO Add some player comment? / Player name
   local description="$(whoami)'s RubeGoldBash game — $(date)"
   # , on a $OSTYPE $HOSTTYPE called $HOSTNAME
+  echo ""
   echo "${white}Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
-  local gist_response=$(curl -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
+  # local gist_response=$(curl -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
+  local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
-  echo "${white}...${reset}"
-  echo "${white}...Yay! Game uploaded to ${bold}${red}$gist_url${reset}"
 
   local voice=$([ $[ $RANDOM % 2 ] == 0 ] && echo "Victoria" || echo "Alex")
-  say -v $voice "Yeah! Game uploaded to $gist_url"
+  say -v $voice "Yeah!"
+
+  echo ""
+  echo "${bold}${red}" ' _  _   _          _        ___                             ' "${reset}"
+  echo "${bold}${red}" '| || | (_)  __ _  | |_     / __|  __   ___   _ _   ___   ___' "${reset}"
+  echo "${bold}${red}" '| __ | | | / _` | | ` \    \__ \ / _| / _ \ | `_| / -_) (_-<' "${reset}"
+  echo "${bold}${red}" '|_||_| |_| \__, | |_||_|   |___/ \__| \___/ |_|   \___| /__/' "${reset}"
+  echo "${bold}${red}" '           |___/                                            ' "${reset}"
+  echo ""
+
+  curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  echo ""
+  echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
+  echo "${bold}${white}View your saved game at ${bold}${red}$gist_url${reset}"
+
   say -v $voice "Congratulations"
 }
