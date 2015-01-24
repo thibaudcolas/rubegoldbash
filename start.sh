@@ -147,6 +147,7 @@ function share() {
   echo ""
   echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
   echo "${bold}${white}View your saved game at ${bold}${red}$gist_url${reset}"
+  echo "${bold}${white}...Want a little extra? Try some \$ ${reset}telnet towel.blinkenlights.nl ${bold}${white}(escape char is ${red}^]${white} and then type ${red}quit${white})${reset}"
 
   say -v $voice "Congratulations"
 }
