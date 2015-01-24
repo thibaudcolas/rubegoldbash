@@ -55,15 +55,15 @@ rubepoker="${yellow}༼ つ ◕_◕ ༽つ";
 rubewink="${yellow}◕‿↼";
 
 # Font: Modified Doom + Smushed Slant
+echo "${bold}${yellow}______________________________________________________________________________${reset}"
 echo "${bold}${cyan}______         _            _____         _      _  ${green}                          ${reset}"
 echo "${bold}${cyan}| ___ \       | |          |  __ \       | |    | | ${green}    ____             __   ${reset}"
 echo "${bold}${cyan}| |_/ / _   _ | |__    ___ | |  \/  ___  | |  __| | ${green}   / __ )____ ______/ /_  ${reset}"
 echo "${bold}${cyan}|    / | | | ||  _ \  / _ \| | __  / _ \ | | / _  | ${green}  / __  / __ // ___/ __ \ ${reset}"
 echo "${bold}${cyan}| |\ \ | |_| || |_) ||  __/| |_\ \| (_) || || (_| | ${green} / /_/ / /_/ (__  ) / / / ${reset}"
 echo "${bold}${cyan}\_| \_| \____||____/  \___| \____/ \___/ |_| \____/ ${green}/_____/\____/____/_/ /_/  ${reset}"
-echo "${bold}${cyan}                                                    ${green}                          ${reset}"
+echo "${bold}${yellow}______________________________________________________________________________${reset}"
 echo "${bold}${cyan}....is now installed!                               ${green}                          ${reset}"
-echo "\n\n \033[0;32mp.s. Follow us at http://twitter.com/TODO.\033[0m"
 
 # Configure history to work the way we want to.
 # rm -f ~/.rubegoldbash_history
