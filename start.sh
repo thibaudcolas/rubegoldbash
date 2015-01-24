@@ -89,6 +89,7 @@ function calculator() {
 # Calculates the player score!
 export BESTSCORE=$(calculator 0)
 export FIRST=$(calculator 0)
+export STAGE=$(calculator 0)
 function score_game() {
   local combo='|'
   history -a
@@ -112,12 +113,39 @@ function score_game() {
     export FIRST=$(calculator 1)
     echo "${bold}${rubewink} If you need help with commands, try this: ${white}http://explainshell.com/${reset}"
   else
-    echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE${reset}";
+    echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE${reset}"
   fi;
 
-  echo "";
-  echo "${bold}${rubethinking} Let's start with something simple, some ${white}ls -la ~${yellow} for example.${reset}"
-  echo "${bold}${rubeyay} And then we can try some basic piping! ${white}ls -la ~ | grep bash${yellow}.${reset}"
+  echo ""
+
+  if (( $BESTSCORE > 200 )); then
+    export STAGE=4
+  elif (( $BESTSCORE > 100 )); then
+    export STAGE=3
+  elif (( $BESTSCORE > 50 )); then
+    export STAGE=2
+  elif (( $BESTSCORE > 20 )); then
+    export STAGE=1
+  fi;
+
+  case "$STAGE" in
+    0 )
+        echo "${bold}${rubethinking} Let's start with something simple, some ${white}ls -la ~${yellow} for example.${reset}"
+        echo "${bold}${rubeyay} And then we can try some basic piping! ${white}ls -la ~ | grep bash${yellow}.${reset}"
+    ;;
+    1 )
+        echo "test1"
+    ;;
+    2 )
+        echo "test2"
+    ;;
+    3 )
+        echo "test3"
+    ;;
+    4 )
+        echo "test4"
+    ;;
+  esac;
 }
 
 # Configure history to work the way we want to.
