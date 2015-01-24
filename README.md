@@ -15,7 +15,7 @@ TODO DESCRIPTION
 ## Getting Started
 
 ~~~bash
-$ source <(curl -s start.rubegoldbash.com)
+$ source <(curl -sL start.rubegoldbash.com)
 ~~~
 
 ## Built with
