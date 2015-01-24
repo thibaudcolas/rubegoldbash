@@ -109,7 +109,7 @@ function score_game() {
     local rubeface=$rubehappy;
   fi;
 
-  echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE"
+  echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE${reset}"
 }
 
 # Configure history to work the way we want to.
@@ -153,13 +153,6 @@ if [[ "${USER}" == "root" ]]; then
   userStyle="${red}";
 else
   userStyle="${orange}";
-fi;
-
-# Highlight the hostname when connected via SSH.
-if [[ "${SSH_TTY}" ]]; then
-  hostStyle="${bold}${red}";
-else
-  hostStyle="${yellow}";
 fi;
 
 # Set the terminal title to the current working directory.
