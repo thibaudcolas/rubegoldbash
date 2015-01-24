@@ -46,6 +46,14 @@ else
   yellow="\e[1;33m";
 fi;
 
+rubehappy="${yellow}(◕‿◕)";
+rubeeager="${yellow}(っ◕‿◕)っ";
+rubeimpatient="${yellow}(づ◕‿◕｡)づ";
+rubethinking="${yellow}(◕‿◕｡)";
+rubeyay="${yellow}(ﾉ◕ヮ◕)ﾉ";
+rubepoker="${yellow}༼ つ ◕_◕ ༽つ";
+rubewink="${yellow}◕‿↼";
+
 # Font: Modified Doom + Smushed Slant
 echo "${bold}${cyan}______         _            _____         _      _  ${green}                          ${reset}"
 echo "${bold}${cyan}| ___ \       | |          |  __ \       | |    | | ${green}    ____             __   ${reset}"
@@ -101,12 +109,13 @@ fi;
 PS1="\[\033]0;\w\007\]";
 PS1+="\[${bold}\]\n"; # newline
 PS1+="\[${userStyle}\]\u"; # username
-PS1+="\[${white}\] at ";
-PS1+="\[${hostStyle}\]\h"; # host
+PS1+="\[${white}\] playing ";
+PS1+="\[${cyan}RubeGold\]\[${green}Bash\]"; # host
 PS1+="\[${white}\] in ";
 PS1+="\[${green}\]\w"; # working directory
 PS1+="\[${white}\] — ";
-PS1+="\[${red}\]What do we do now?";
+PS1+="\[${rubethinking}\]";
+PS1+="\[${red}\] What do we do now?";
 PS1+="\n";
 PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 export PS1;
@@ -127,7 +136,8 @@ function share() {
   local description="$(whoami)'s RubeGoldBash game — $(date)"
   # , on a $OSTYPE $HOSTTYPE called $HOSTNAME
   echo ""
-  echo "${white}Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
+  echo "${rubeyay} ${white}Yeah!"
+  echo "${white}...Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
   # local gist_response=$(curl -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
   local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
@@ -136,18 +146,20 @@ function share() {
   say -v $voice "Yeah!"
 
   echo ""
-  echo "${bold}${red}" ' _  _   _          _        ___                             ' "${reset}"
-  echo "${bold}${red}" '| || | (_)  __ _  | |_     / __|  __   ___   _ _   ___   ___' "${reset}"
-  echo "${bold}${red}" '| __ | | | / _` | | ` \    \__ \ / _| / _ \ | `_| / -_) (_-<' "${reset}"
-  echo "${bold}${red}" '|_||_| |_| \__, | |_||_|   |___/ \__| \___/ |_|   \___| /__/' "${reset}"
-  echo "${bold}${red}" '           |___/                                            ' "${reset}"
+  echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
+  echo "${bold}${red}"    ' _  _   _          _        ___                             ' "${reset}"
+  echo "${bold}${red}"    '| || | (_)  __ _  | |_     / __|  __   ___   _ _   ___   ___' "${reset}"
+  echo "${bold}${red}"    '| __ | | | / _` | | ` \    \__ \ / _| / _ \ | `_| / -_) (_-<' "${reset}"
+  echo "${bold}${red}"    '|_||_| |_| \__, | |_||_|   |___/ \__| \___/ |_|   \___| /__/' "${reset}"
+  echo "${bold}${red}"    '           |___/                                            ' "${reset}"
+  echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
   echo ""
-
   curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  echo "${rubeimpatient}${reset}"
   echo ""
   echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
   echo "${bold}${white}View your saved game at ${bold}${red}$gist_url${reset}"
-  echo "${bold}${white}...Want a little extra? Try some \$ ${reset}telnet towel.blinkenlights.nl ${bold}${white}(escape char is ${red}^]${white} and then type ${red}quit${white})${reset}"
+  echo "${bold}${white}...Want a little extra? Try some \$ ${reset}telnet towel.blinkenlights.nl ${bold}${rubewink} ${white}(to escape, hit ${red}^]${white} and type ${red}quit${white})${reset}"
 
   say -v $voice "Congratulations"
 }
