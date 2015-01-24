@@ -84,7 +84,7 @@ function calculator() {
 }
 
 # Calculates the player score!
-export PLAYERSCORE=$(calculator 0)
+export BESTSCORE=$(calculator 0)
 function score_game() {
   local combo='|'
   history -a
@@ -96,21 +96,22 @@ function score_game() {
   local command_length=$(echo $last_command | wc -m)
   local command_score=$(( multiplier * command_length ))
 
+  export BESTSCORE=$(($BESTSCORE > $command_score ? $BESTSCORE: $command_score))
+
   if [[ "$command_score" -eq 0 ]]; then
     local rubeface=$rubemeh;
   else
     local rubeface=$rubehappy;
   fi;
 
-  export PLAYERSCORE=$(calculator "$PLAYERSCORE" + $command_score)
-  echo "${rubeface} Command Score:${white} $command_score"
+  echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE"
 }
-
 
 # Configure history to work the way we want to.
 export HISTFILE=~/.rubegoldbash_history
 history -w
 rm -f ~/.rubegoldbash_history
+touch ~/.rubegoldbash_history
 export HISTIGNORE=''
 export HISTTIMEFORMAT='%T $'
 export HISTSIZE=10000
@@ -121,7 +122,7 @@ export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # After each command, append to the history file and reread it
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}score_game"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}score_game"
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
@@ -178,23 +179,26 @@ export PS2;
 function share() {
   history -w
 
-  # curl ifconfig.me/host
-  # curl ifconfig.me/ip
+  local voice=$([ $[ $RANDOM % 2 ] == 0 ] && echo "Victoria" || echo "Alex")
 
-  # TODO unstub
-
-  # TODO Add some player comment? / Player name
   local description="$(whoami)'s RubeGoldBash game — $(date)"
-  # , on a $OSTYPE $HOSTTYPE called $HOSTNAME
+
+  if [[ "$BESTSCORE" -eq 0 ]]; then
+    local rubeface=$rubemeh;
+    local message="Try again.";
+  else
+    local rubeface=$rubehappy;
+    local message="Yeah!";
+  fi;
+
   echo ""
-  echo "${rubeyay} ${white}Yeah!"
+  echo "${rubeface} $message You scored ${red}$BESTSCORE points!"
+  say -v $voice "$message You scored $BESTSCORE points!"
   echo "${white}...Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
+
   # local gist_response=$(curl -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
   local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
-
-  local voice=$([ $[ $RANDOM % 2 ] == 0 ] && echo "Victoria" || echo "Alex")
-  say -v $voice "Yeah!"
 
   echo ""
   echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
@@ -211,6 +215,4 @@ function share() {
   echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
   echo "${bold}${white}View your saved game at ${bold}${red}$gist_url${reset}"
   echo "${bold}${white}...Want a little extra? Try some \$ ${reset}telnet towel.blinkenlights.nl ${bold}${rubewink} ${white}(to escape, hit ${red}^]${white} and type ${red}quit${white})${reset}"
-
-  say -v $voice "Congratulations"
 }
