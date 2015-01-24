@@ -66,20 +66,25 @@ echo "${bold}${yellow}__________________________________________________________
 echo "${bold}${cyan}....is now installed!                               ${green}                          ${reset}"
 
 # Configure history to work the way we want to.
-# rm -f ~/.rubegoldbash_history
-HISTFILE=~/.rubegoldbash_history
-HISTIGNORE=ls:'cd:cd -:pwd:exit:date:* --help:ls:'
-HISTTIMEFORMAT='%T %H:%M:%S$'
-HISTSIZE=10000
-SAVEHIST=10000
-HISTCONTROL=ignorespace:ignoredups:erasedups
+export HISTFILE=~/.rubegoldbash_history
+history -w
+rm -f ~/.rubegoldbash_history
+export HISTIGNORE=ls:'cd:cd -:pwd:exit:date:* --help:ls:'
+export HISTTIMEFORMAT='%T $'
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTCONTROL=ignoreboth:erasedups
+
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
+
+# After each command, append to the history file and reread it
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
 
@@ -125,7 +130,8 @@ export PS2;
 
 # Share your results online!
 function share() {
-  # history -c; history -r
+  history -w
+  history -c
 
   # curl ifconfig.me/host
   # curl ifconfig.me/ip

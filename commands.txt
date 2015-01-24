@@ -10,7 +10,7 @@ curl whenwillitbedone.trgdy.com | grep '<p>'
 ### TODO
 
 curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '^<li>.*</li>'
-
+cat /dev/urandom | hexdump -C | grep “ca fe”
 
 ## Cal
 
