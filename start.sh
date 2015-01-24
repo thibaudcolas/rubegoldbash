@@ -46,14 +46,14 @@ else
   yellow="\e[1;33m";
 fi;
 
-rubehappy="${yellow}(◕‿◕)";
-rubemeh="${yellow}(◕_◕)";
-rubeeager="${yellow}(っ◕‿◕)っ";
-rubeimpatient="${yellow}(づ◕‿◕｡)づ";
-rubethinking="${yellow}(◕‿◕｡)";
-rubeyay="${yellow}(ﾉ◕ヮ◕)ﾉ";
-rubepoker="${yellow}༼ つ ◕_◕ ༽つ";
-rubewink="${yellow}◕‿↼";
+rubehappy="${orange}(◕‿◕)${yellow}";
+rubemeh="${orange}(◕_◕)${yellow}";
+rubeeager="${orange}(っ◕‿◕)っ${yellow}";
+rubeimpatient="${orange}(づ◕‿◕｡)づ${yellow}";
+rubethinking="${orange}(◕‿◕｡)${yellow}";
+rubeyay="${orange}(ﾉ◕ヮ◕)ﾉ${yellow}";
+rubepoker="${orange}༼ つ ◕_◕ ༽つ${yellow}";
+rubewink="${orange}◕‿↼${yellow}";
 
 # Font: Modified Doom + Smushed Slant
 echo "${bold}${yellow}______________________________________________________________________________${reset}"
@@ -65,7 +65,8 @@ echo "${bold}${cyan}| |\ \ | |_| || |_) ||  __/| |_\ \| (_) || || (_| | ${green}
 echo "${bold}${cyan}\_| \_| \____||____/  \___| \____/ \___/ |_| \____/ ${green}/_____/\____/____/_/ /_/  ${reset}"
 echo "${bold}${yellow}______________________________________________________________________________${reset}"
 echo "${bold}${cyan}....is now installed! ${rubehappy} Cool, let's get started!${reset}"
-echo "${bold}${rubeeager} I'm Rube, the command-line guru. Nice to meet you, ${orange}$(whoami)."
+echo ""
+echo "${bold}${rubeeager} I'm ${orange}Rube${yellow}, the command-line guru. Nice to meet you, ${orange}$(whoami)."
 echo "${bold}${rubethinking} Don't you want to type some commands? Let's try some ${white}ls${yellow}, for example."
 
 function calculator() {
@@ -169,7 +170,7 @@ PS1+="\[${white}\] in ";
 PS1+="\[${green}\]\w"; # working directory
 PS1+="\[${white}\] — ";
 PS1+="\[${rubethinking}\]";
-PS1+="\[${red}\] What do we do now?";
+PS1+="\[${yellow}\] What do we do now?";
 PS1+="\n";
 PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 export PS1;
