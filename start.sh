@@ -85,12 +85,17 @@ function calculator() {
 # Calculates the player score!
 export PLAYERSCORE=$(calculator 0)
 function score_game() {
+  local combo='|'
   history -a
   history -c
   history -r
-  local command_score=$(cat $HISTFILE | tail -n 1 | wc -m)
+  local last_command=$(cat $HISTFILE | tail -n 1)
+  local multiplier=$(grep -o "$combo" <<< $last_command | wc -l)
+  multiplier=$((multiplier))
+  local command_length=$(echo $last_command | wc -m)
+  local command_score=$(( multiplier * command_length ))
   export PLAYERSCORE=$(calculator "$PLAYERSCORE" + $command_score)
-  echo "${rubehappy} Command Score:${white}$command_score"
+  echo "${rubehappy} Command Score:${white} $command_score"
 }
 
 
@@ -98,7 +103,7 @@ function score_game() {
 export HISTFILE=~/.rubegoldbash_history
 history -w
 rm -f ~/.rubegoldbash_history
-export HISTIGNORE=ls:'cd:cd -:pwd:exit:date:* --help:ls:'
+export HISTIGNORE=''
 export HISTTIMEFORMAT='%T $'
 export HISTSIZE=10000
 export SAVEHIST=10000
