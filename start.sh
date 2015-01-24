@@ -64,7 +64,9 @@ echo "${bold}${cyan}|    / | | | ||  _ \  / _ \| | __  / _ \ | | / _  | ${green}
 echo "${bold}${cyan}| |\ \ | |_| || |_) ||  __/| |_\ \| (_) || || (_| | ${green} / /_/ / /_/ (__  ) / / / ${reset}"
 echo "${bold}${cyan}\_| \_| \____||____/  \___| \____/ \___/ |_| \____/ ${green}/_____/\____/____/_/ /_/  ${reset}"
 echo "${bold}${yellow}______________________________________________________________________________${reset}"
-echo "${bold}${cyan}....is now installed! ${rubeimpatient}${reset}"
+echo "${bold}${cyan}....is now installed! ${rubehappy} Cool, let's get started!${reset}"
+echo "${bold}${rubeeager} I'm Rube, the command-line guru. Nice to meet you, ${orange}$(whoami)."
+echo "${bold}${rubethinking} Don't you want to type some commands? Let's try some ${white}ls${yellow}, for example."
 
 function calculator() {
   local result="";
