@@ -116,7 +116,7 @@ history -w
 rm -f ~/.rubegoldbash_history
 touch ~/.rubegoldbash_history
 export HISTIGNORE=''
-export HISTTIMEFORMAT='%T $'
+export HISTTIMEFORMAT='%T $ '
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTCONTROL=ignoreboth:erasedups
@@ -199,9 +199,14 @@ function share() {
   say -v $voice "$message You scored $BESTSCORE points!"
   echo "${white}...Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
 
-  local gist_response=$(curl --silent -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"history.sh\":{\"content\":\"test\"}}}" https://api.github.com/gists)
+  local player_history=$(cat $HISTFILE | sed '/^#/ d' | sed ':a;N;$!ba;s/\n/ /g')
+  player_history="${player_history//\"/\\\"}"
+  player_history="${player_history//\n/\\n}"
+  local gist_upload='{"public": true,"description": "'"$description"'","files": {"history.sh": {"content": "'"$player_history"'"}}}'
+  local gist_response=$(curl --silent -X POST -d "$gist_upload" https://api.github.com/gists)
   # local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
+  local gist_hash=$(echo $gist_url | cut -d '/' -f 4)
 
   echo ""
   echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
@@ -212,7 +217,7 @@ function share() {
   echo "${bold}${red}"    '           |___/                                            ' "${reset}"
   echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
   echo ""
-  curl --silent -X POST --data "player=$(whoami)&score=$BESTSCORE&gist=test" http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  curl --silent -X POST --data "player=$(whoami)&score=$BESTSCORE&gist=$gist_hash" http://highscore.rubegoldbash.com/scores.txt | column -s, -t
   # curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
   echo "${rubeimpatient}${reset}"
   echo ""
