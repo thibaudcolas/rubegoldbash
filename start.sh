@@ -7,6 +7,8 @@
 # https://github.com/ThibWeb/rubegoldbash
 # By: Thibaud Colas, License: CC0
 
+# A nice little clock.
+while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-10));date +"%T";tput rc;done &
 
 # Colors, Solarized theme from https://github.com/necolas/dotfiles
 
@@ -199,6 +201,7 @@ function share() {
   say -v $voice "$message You scored $BESTSCORE points!"
   echo "${white}...Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
 
+  #TODO Find another way to serialize JSON
   local player_history=$(cat $HISTFILE | sed '/^#/ d' | sed ':a;N;$!ba;s/\n/ /g')
   player_history="${player_history//\"/\\\"}"
   player_history="${player_history//\n/\\n}"
