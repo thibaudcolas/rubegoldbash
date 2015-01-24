@@ -85,7 +85,12 @@ function calculator() {
 # Calculates the player score!
 export PLAYERSCORE=$(calculator 0)
 function score_game() {
-  export PLAYERSCORE=$(calculator "$PLAYERSCORE" + 10)
+  history -a
+  history -c
+  history -r
+  local command_score=$(cat $HISTFILE | tail -n 1 | wc -m)
+  export PLAYERSCORE=$(calculator "$PLAYERSCORE" + $command_score)
+  echo "${rubehappy} Command Score:${white}$command_score"
 }
 
 
@@ -103,7 +108,7 @@ export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # After each command, append to the history file and reread it
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r; score_game"
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}score_game"
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
