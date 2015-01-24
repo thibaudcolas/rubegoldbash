@@ -7,9 +7,6 @@
 # https://github.com/ThibWeb/rubegoldbash
 # By: Thibaud Colas, License: CC0
 
-# A nice little clock.
-while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-10));date +"%T";tput rc;done &
-
 # Colors, Solarized theme from https://github.com/necolas/dotfiles
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
