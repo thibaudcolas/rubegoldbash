@@ -18,6 +18,16 @@ TODO DESCRIPTION
 $ source <(curl -sL start.rubegoldbash.com)
 ~~~
 
+### Non-standard commands
+
+Here is the list of requirements that your system must fulfill in order to run this game:
+
+- Terminal able to display colors (`xterm-256color`)
+- `bc`
+- `python`
+- curl`
+- `say`
+
 ## Built with
 
 - A lot of Bash
@@ -43,6 +53,20 @@ $ source <(curl -sL start.rubegoldbash.com)
 ## Contributing
 
 - [High Score server repository](https://github.com/ThibWeb/rubegoldbash-server)
+
+## Examples of RubeGoldBash (SPOILERS!)
+
+~~~bash
+# Retrieve the weather for your location
+curl -s ip.appspot.com | xargs -n 1 curl -s "freegeoip.net/csv/$1" | cut -d ',' -f '9 10' | sed 's/,/\&lon=/g' | xargs -n 1 echo "http://api.openweathermap.org/data/2.5/weather?mode=html&lat=$1" | sed 's/ //g' | xargs -n 1 curl -s $1 | tee weather.html
+# Same request, with display to the prompt using lynx
+curl -s ip.appspot.com | xargs -n 1 curl -s "freegeoip.net/csv/$1" | cut -d ',' -f '9 10' | sed 's/,/\&lon=/g' | xargs -n 1 echo "http://api.openweathermap.org/data/2.5/weather?mode=html&lat=$1" | sed 's/ //g' | xargs -n 1 curl -s $1 | lynx -stdin -dump
+
+# Retrieve the answer to "When will it be done?" (scraping) and make a nice voice read it for you.
+lynx --dump whenwillitbedone.trgdy.com | head -n 8 | tail -n 4 | tr "\\n" ' ' | cut -d '[' -f 1 | sed 's/   //g' | sed "s/'/ /g" | perl -pe 's/([^a-zA-Z0-9_.!~*()'\''-])/sprintf("%%%02X", ord($1))/ge' | xargs -n 1 echo "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=$1" | sed 's/ //g' | xargs -n 1 curl -s "$1" > whenwillitbedone.mp3
+# File can be read with
+afplay whenwillitbedone.mp3
+~~~
 
 ## LICENSE ![(CC BY-NC-SA)](https://img.shields.io/badge/License-CC%20By--NC--SA%203.0-blue.svg?style=flat-square)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
