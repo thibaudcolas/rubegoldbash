@@ -47,6 +47,7 @@ else
 fi;
 
 rubehappy="${yellow}(◕‿◕)";
+rubemeh="${yellow}(◕_◕)";
 rubeeager="${yellow}(っ◕‿◕)っ";
 rubeimpatient="${yellow}(づ◕‿◕｡)づ";
 rubethinking="${yellow}(◕‿◕｡)";
@@ -94,8 +95,15 @@ function score_game() {
   multiplier=$((multiplier))
   local command_length=$(echo $last_command | wc -m)
   local command_score=$(( multiplier * command_length ))
+
+  if [[ "$command_score" -eq 0 ]]; then
+    local rubeface=$rubemeh;
+  else
+    local rubeface=$rubehappy;
+  fi;
+
   export PLAYERSCORE=$(calculator "$PLAYERSCORE" + $command_score)
-  echo "${rubehappy} Command Score:${white} $command_score"
+  echo "${rubeface} Command Score:${white} $command_score"
 }
 
 
