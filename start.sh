@@ -65,6 +65,30 @@ echo "${bold}${cyan}\_| \_| \____||____/  \___| \____/ \___/ |_| \____/ ${green}
 echo "${bold}${yellow}______________________________________________________________________________${reset}"
 echo "${bold}${cyan}....is now installed!                               ${green}                          ${reset}"
 
+function calculator() {
+  local result="";
+  result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
+  #                       └─ default (when `--mathlib` is used) is 20
+  #
+  if [[ "$result" == *.* ]]; then
+    # improve the output for decimal numbers
+    printf "$result" |
+    sed -e 's/^\./0./'        # add "0" for cases like ".5"` \
+        -e 's/^-\./-0./'      # add "0" for cases like "-.5"`\
+        -e 's/0*$//;s/\.$//'; # remove trailing zeros
+  else
+    printf "$result";
+  fi;
+  printf "\n";
+}
+
+# Calculates the player score!
+export PLAYERSCORE=$(calculator 0)
+function score_game() {
+  export PLAYERSCORE=$(calculator "$PLAYERSCORE" + 10)
+}
+
+
 # Configure history to work the way we want to.
 export HISTFILE=~/.rubegoldbash_history
 history -w
@@ -79,7 +103,7 @@ export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # After each command, append to the history file and reread it
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r; score_game"
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
@@ -88,6 +112,10 @@ shopt -s nocaseglob;
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
 
+# OS X has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+# OS X has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
 # Nice prompt from https://github.com/necolas/dotfiles.
 
@@ -131,7 +159,6 @@ export PS2;
 # Share your results online!
 function share() {
   history -w
-  history -c
 
   # curl ifconfig.me/host
   # curl ifconfig.me/ip
