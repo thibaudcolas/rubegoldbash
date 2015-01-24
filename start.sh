@@ -64,7 +64,7 @@ echo "${bold}${cyan}|    / | | | ||  _ \  / _ \| | __  / _ \ | | / _  | ${green}
 echo "${bold}${cyan}| |\ \ | |_| || |_) ||  __/| |_\ \| (_) || || (_| | ${green} / /_/ / /_/ (__  ) / / / ${reset}"
 echo "${bold}${cyan}\_| \_| \____||____/  \___| \____/ \___/ |_| \____/ ${green}/_____/\____/____/_/ /_/  ${reset}"
 echo "${bold}${yellow}______________________________________________________________________________${reset}"
-echo "${bold}${cyan}....is now installed!                               ${green}                          ${reset}"
+echo "${bold}${cyan}....is now installed! ${rubeimpatient}${reset}"
 
 function calculator() {
   local result="";
@@ -196,8 +196,8 @@ function share() {
   say -v $voice "$message You scored $BESTSCORE points!"
   echo "${white}...Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
 
-  # local gist_response=$(curl -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"test.txt\":{\"content\":\"test\"}}}" https://api.github.com/gists)
-  local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
+  local gist_response=$(curl --silent -X POST -d "{\"public\":true,\"description\":\"$description\",\"files\":{\"history.sh\":{\"content\":\"test\"}}}" https://api.github.com/gists)
+  # local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
 
   echo ""
@@ -209,7 +209,8 @@ function share() {
   echo "${bold}${red}"    '           |___/                                            ' "${reset}"
   echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
   echo ""
-  curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  curl --silent -X POST --data "player=$(whoami)&score=$BESTSCORE&gist=test" http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  # curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
   echo "${rubeimpatient}${reset}"
   echo ""
   echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
