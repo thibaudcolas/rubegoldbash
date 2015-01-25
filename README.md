@@ -42,6 +42,10 @@ Here is the list of requirements that your system must fulfill in order to run t
 - curl`
 - `say`
 
+## Look, screnshot!
+
+![Screenshot](rubegoldbash-screenshot.png)
+
 ## Built with
 
 - A lot of Bash
