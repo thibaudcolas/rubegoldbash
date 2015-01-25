@@ -8,11 +8,18 @@ ______         _            _____         _      _
 |    / | | | ||  _ \  / _ \| | __  / _ \ | | / _  |  / __  / __ // ___/ __ \ 
 | |\ \ | |_| || |_) ||  __/| |_\ \| (_) || || (_| | / /_/ / /_/ (__  ) / / / 
 \_| \_| \____||____/  \___| \____/ \___/ |_| \____//_____/\____/____/_/ /_/  
+(っ◕‿◕)っ is an awesome game!
 ~~~
 
-TODO DESCRIPTION
+> A command-line quest where your goal is to invent Rube Goldberg machines in bash! Create the longest one-liners you can, the more pipes (|) the better.
+> Master Rube ((◕‿◕) Hi there!) will help you during your quest.
+
+- View the [RubeGoldBash website!](http://www.rubegoldbash.com)
+- Look at the [RubeGoldBash High Scores!](http://highscore.rubegoldbash.com)
 
 ## Getting Started
+
+First open your favorite prompt, and then:
 
 ~~~bash
 bash
@@ -24,7 +31,7 @@ share
 exit
 ~~~
 
-### Non-standard commands
+### Requirements
 
 Here is the list of requirements that your system must fulfill in order to run this game:
 
@@ -47,6 +54,7 @@ Here is the list of requirements that your system must fulfill in order to run t
 
 ### Online services
 
+- http://commandlinefu.com/
 - http://www.yodaquotes.net/
 - http://ip.appspot.com/
 - http://whenwillitbedone.trgdy.com/
@@ -60,6 +68,28 @@ Here is the list of requirements that your system must fulfill in order to run t
 - http://patorjk.com/software/taag/#p=display&h=2&v=1&f=Slant&t=RubeGoldBash
 - https://github.com/olizilla/asciify
 - https://github.com/maxogden/cool-ascii-faces
+
+## Related
+
+### Main concept
+
+- https://en.wikipedia.org/wiki/Rube_Goldberg_machine
+- https://en.wikipedia.org/wiki/Unix_philosophy
+- https://en.wikipedia.org/wiki/Turboencabulator
+- http://blog.codinghorror.com/rube-goldberg-software-devices/
+
+### Games
+
+- https://github.com/mprat/Terminus
+- https://xss-game.appspot.com/
+- https://github.com/Gazler/githug
+- https://alexnisnevich.github.io/untrusted/
+- http://www.mobygames.com/game/dos/incredible-machine
+
+### Videos
+
+- https://www.youtube.com/watch?v=_ve4M4UsJQo
+- https://www.youtube.com/watch?v=H6wXKVpWWHY
 
 ## Contributing
 
