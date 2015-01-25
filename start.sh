@@ -247,12 +247,14 @@ function share() {
   echo "${white}...Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
 
   #TODO Find another way to serialize JSON
-  local player_history=$(cat $HISTFILE | sed '/^#/ d' | sed ':a;N;$!ba;s/\n/ /g')
+  # local player_history=$(cat $HISTFILE | sed '/^#/ d' | sed ':a;N;$!ba;s/\n/ /g')
+  #TODO Destub
+  local player_history=$(cat $HISTFILE | tail -n 1 | sed '/^#/ d' | sed ':a;N;$!ba;s/\n/ /g')
   player_history="${player_history//\"/\\\"}"
   player_history="${player_history//\n/\\n}"
   local gist_upload='{"public": true,"description": "'"$description"'","files": {"history.sh": {"content": "'"$player_history"'"}}}'
-  #local gist_response=$(curl --silent -X POST -d "$gist_upload" https://api.github.com/gists)
-  local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
+  local gist_response=$(curl --silent -X POST -d "$gist_upload" https://api.github.com/gists)
+  # local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
   local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
   local gist_hash=$(echo $gist_url | cut -d '/' -f 4)
 
@@ -265,10 +267,12 @@ function share() {
   echo "${bold}${red}"    '           |___/                                            ' "${reset}"
   echo "${bold}${yellow}" '____________________________________________________________' "${reset}"
   echo ""
-  # curl --silent -X POST --data "player=$(whoami)&score=$BESTSCORE&gist=$gist_hash" http://highscore.rubegoldbash.com/scores.txt | column -s, -t
-  curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  curl --silent -X POST --data "player=$(whoami)&score=$BESTSCORE&gist=$gist_hash" http://highscore.rubegoldbash.com/scores.txt | column -s, -t
+  # curl --silent http://highscore.rubegoldbash.com/scores.txt | column -s, -t
   echo "${rubeimpatient}${reset}"
   echo ""
   echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
   echo "${bold}${white}View your saved game at ${bold}${red}$gist_url${reset}"
+  echo "${bold}${rubewink} Wanna try something else? ${white}telnet towel.blinkenlights.nl ${yellow}(to exit, hit ${red}^]${white} and type ${red}quit${white})${reset}"
+  echo ""
 }
