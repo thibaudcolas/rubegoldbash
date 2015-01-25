@@ -114,6 +114,11 @@ afplay whenwillitbedone.mp3
 
 # Count the number of folders in the current working directory.
 ls -l | cut -c 1 | grep d | wc -l
+
+# Find the longest name
+cat /usr/share/dict/propernames | grep 'S' | awk '{print length($1), $1}' | sort -n | tail -n 1 | cut -d ' ' -f 2
+# And spell it
+cat /usr/share/dict/propernames | grep 'S' | awk '{print length($1), $1}' | sort -n | tail -n 1 | cut -d ' ' -f 2 | say
 ~~~
 
 ## LICENSE ![(CC BY-NC-SA)](https://img.shields.io/badge/License-CC%20By--NC--SA%203.0-blue.svg?style=flat-square)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
