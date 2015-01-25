@@ -40,7 +40,7 @@ cal | sed "s/.*/ & /;s/ $(date +%d) / $(printf '\e[0;31m[]\e[0m') /"
 
 ## Dangerous
 
-[ $[ $RANDOM % 6 ] == 0 ] && ping 8.8.8.8 || echo "You live"
+[ $[ $RANDOM % 6 ] == 0 ] && echo "You DIE" || echo "You live"
 
 ## Extra
 

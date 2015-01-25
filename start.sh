@@ -112,13 +112,16 @@ function score_game() {
   if [[ "$FIRST" -eq 0 ]]; then
     export FIRST=$(calculator 1)
     echo "${bold}${rubewink} If you need help with commands, try this: ${white}http://explainshell.com/${reset}"
+    echo "${bold}${rubethinking} You can share your score with the world by using the ${white}share${yellow} command."
   else
     echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE${reset}"
   fi;
 
   echo ""
 
-  if (( $BESTSCORE > 200 )); then
+  if (( $BESTSCORE > 500 )); then
+    export STAGE=5
+  elif (( $BESTSCORE > 200 )); then
     export STAGE=4
   elif (( $BESTSCORE > 100 )); then
     export STAGE=3
@@ -134,16 +137,29 @@ function score_game() {
         echo "${bold}${rubeyay} And then we can try some basic piping! ${white}ls -la ~ | grep bash${yellow}.${reset}"
     ;;
     1 )
-        echo "test1"
+        echo "${bold}${rubeyay} You did it! ... but that was easy, I told you what to do!${reset}"
+        echo "${bold}${rubethinking} You can share your score with the world by using the ${white}share${yellow} command."
+        echo "${bold}${rubehappy} Ok, let's go a little bit further. Pipe the previous command into ${white}wc -l${yellow}.${reset}"
     ;;
     2 )
-        echo "test2"
+        echo "${bold}${rubeeager} That was fast, we need to go deeper! ${red}Web Scraping${yellow} is an ancient dark art.${reset}"
+        echo "${bold}${rubeimpatient} Behold the power of ${white}curl${yellow}! ${white}curl -s whenwillitbedone.trgdy.com${yellow}.${reset}"
+        echo "${bold}${rubeeager} You can use ${white}grep${yellow} and ${white}sed${yellow} to only keep the good stuff: ${white}grep '<p>'${yellow}, ${white}sed 's/<p>//g'${yellow}.${reset}"
     ;;
     3 )
-        echo "test3"
+        echo "${bold}${rubepoker} ${red}Powerful you have become, the dark side I sense in you.${reset}"
+        echo "${bold}${rubemeh} Use your powers for good, not for evil! But here's some nice cool black magic:${reset}"
+        echo "${bold}${rubeyay} ${white}lynx -dump twitter.com/globalgamejam | head -n150 | tail -n30 | grep -v '(BUTT'${reset}"
     ;;
     4 )
-        echo "test4"
+        echo "${bold}${rubepoker} ${red}If you end your training now — if you choose the quick and easy path as Vader did — you will become an agent of evil.${reset}"
+        echo "${bold}${rubeyay} ${white}xargs -n 1${yellow} is a powerful weapon, not to use lightly — that said, try it with ${white}curl${yellow}.${reset}"
+        echo "${bold}${rubemeh} Always pass on what you have learned. - by using the ${white}share${yellow} command.${reset}"
+    ;;
+    5 )
+        echo "${bold}${rubethinking} I have nothing more to teach you, my young apprentice. Let's ${white}share${yellow}.${reset}"
+        echo "${bold}${rubewink} You proved yourself worthy, here's something you might enjoy:${reset}"
+        echo "${bold}${rubewink} ${white}telnet towel.blinkenlights.nl ${yellow}(to exit, hit ${red}^]${white} and type ${red}quit${white})${reset}"
     ;;
   esac;
 }
@@ -255,5 +271,4 @@ function share() {
   echo ""
   echo "${bold}${white}View the full list online at ${red}http://www.rubegoldbash.com/${reset}"
   echo "${bold}${white}View your saved game at ${bold}${red}$gist_url${reset}"
-  echo "${bold}${white}...Want a little extra? Try some \$ ${reset}telnet towel.blinkenlights.nl ${bold}${rubewink} ${white}(to escape, hit ${red}^]${white} and type ${red}quit${white})${reset}"
 }
