@@ -15,7 +15,13 @@ TODO DESCRIPTION
 ## Getting Started
 
 ~~~bash
-$ source <(curl -sL start.rubegoldbash.com)
+bash
+source <(curl -sL start.rubegoldbash.com)
+
+# Use share to submit your score:
+share
+# Use exit to stop RubeGoldBash
+exit
 ~~~
 
 ### Non-standard commands
@@ -23,6 +29,7 @@ $ source <(curl -sL start.rubegoldbash.com)
 Here is the list of requirements that your system must fulfill in order to run this game:
 
 - Terminal able to display colors (`xterm-256color`)
+- `bash`
 - `bc`
 - `python`
 - curl`
@@ -40,6 +47,10 @@ Here is the list of requirements that your system must fulfill in order to run t
 
 ### Online services
 
+- http://www.yodaquotes.net/
+- http://ip.appspot.com/
+- http://whenwillitbedone.trgdy.com/
+- http://translate.google.com/
 - http://ifconfig.me/
 - http://openweathermap.org/
 - http://freegeoip.net/
@@ -66,6 +77,9 @@ curl -s ip.appspot.com | xargs -n 1 curl -s "freegeoip.net/csv/$1" | cut -d ',' 
 lynx --dump whenwillitbedone.trgdy.com | head -n 8 | tail -n 4 | tr "\\n" ' ' | cut -d '[' -f 1 | sed 's/   //g' | sed "s/'/ /g" | perl -pe 's/([^a-zA-Z0-9_.!~*()'\''-])/sprintf("%%%02X", ord($1))/ge' | xargs -n 1 echo "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=$1" | sed 's/ //g' | xargs -n 1 curl -s "$1" > whenwillitbedone.mp3
 # File can be read with
 afplay whenwillitbedone.mp3
+
+# Count the number of folders in the current working directory.
+ls -l | cut -c 1 | grep d | wc -l
 ~~~
 
 ## LICENSE ![(CC BY-NC-SA)](https://img.shields.io/badge/License-CC%20By--NC--SA%203.0-blue.svg?style=flat-square)](http://creativecommons.org/licenses/by-nc-sa/3.0/)

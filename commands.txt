@@ -17,6 +17,8 @@ curl ipinfo.io/geo
 curl "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=hello+world" > test.mp3
 afplay test.mp3
 
+curl dict://dict.org/d:test
+
 ## Scraping
 
 curl whenwillitbedone.trgdy.com | grep '<p>'
