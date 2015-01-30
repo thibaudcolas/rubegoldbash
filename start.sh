@@ -150,6 +150,13 @@ function score_game() {
   esac;
 }
 
+function rubesay() {
+  if hash say 2>/dev/null; then
+    local voice=$([ $[ $RANDOM % 2 ] == 0 ] && echo "Victoria" || echo "Alex")
+    say -v $voice "$@"
+  fi
+}
+
 function write_history() {
   if [ -n "$ZSH_VERSION" ]; then
     fc -AI
@@ -240,8 +247,6 @@ export PS2;
 function share() {
   write_history
 
-  local voice=$([ $[ $RANDOM % 2 ] == 0 ] && echo "Victoria" || echo "Alex")
-
   local description="$(whoami)'s RubeGoldBash game — $(date)"
 
   if [[ "$BESTSCORE" -eq 0 ]]; then
@@ -254,7 +259,7 @@ function share() {
 
   echo ""
   echo "${rubeface} $message You scored ${red}$BESTSCORE points!"
-  say -v $voice "$message You scored $BESTSCORE points!"
+  rubesay "$message You scored $BESTSCORE points!"
   echo "${white}...Uploading ${bold}${userStyle}$(whoami)${white}'s ${cyan}RubeGold${green}Bash ${white}game — ${orange}$(date)${reset}"
 
   #TODO Find another way to serialize JSON

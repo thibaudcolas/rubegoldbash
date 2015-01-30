@@ -36,9 +36,8 @@ exit
 Here is the list of requirements for the game to run on your system:
 
 - `bash`
-- `python`
 - `curl`
-- `say`
+- `python`
 
 ## Look, screnshot!
 
