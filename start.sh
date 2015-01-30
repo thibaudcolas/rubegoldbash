@@ -271,7 +271,7 @@ function share() {
   local gist_upload='{"public": true,"description": "'"$description"'","files": {"history.sh": {"content": "'"$player_history"'"}}}'
   local gist_response=$(curl --silent -X POST -d "$gist_upload" https://api.github.com/gists)
   # local gist_response='{"html_url": "https://gist.github.com/banana","test":true}'
-  local gist_url=$(echo $gist_response | python -m json.tool | grep '"html_url": "https://gist.github.com/.*",' | cut -d '"' -f 4)
+  local gist_url=$(echo $gist_response | grep -o "https://gist.github.com/[a-z0-9]*" | head -n 1)
   local gist_hash=$(echo $gist_url | cut -d '/' -f 4)
 
   echo ""

@@ -14,8 +14,8 @@ ______         _            _____         _      _
 > A command-line quest where your goal is to invent Rube Goldberg machines in bash! Create the longest one-liners you can, the more pipes (|) the better.
 > Master Rube ((◕‿◕) Hi there!) will help you during your quest.
 
-- View the [RubeGoldBash website!](http://www.rubegoldbash.com)
-- Look at the [RubeGoldBash High Scores!](http://highscore.rubegoldbash.com)
+- View the [RubeGoldBash website](http://www.rubegoldbash.com)!
+- Look at the [RubeGoldBash High Scores](http://highscore.rubegoldbash.com)!
 
 ## Getting Started
 
@@ -31,13 +31,7 @@ share
 exit
 ~~~
 
-### Requirements
-
-Here is the list of requirements for the game to run on your system:
-
-- `bash`
-- `curl`
-- `python`
+The game relies on `bash` and `curl` to work, as well as other bash builtins and standard UNIX tools.
 
 ## Look, screnshot!
 
