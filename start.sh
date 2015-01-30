@@ -8,7 +8,6 @@
 # By: Thibaud Colas, License: CC0
 
 # Colors, Solarized theme from https://github.com/necolas/dotfiles
-
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
   export TERM='gnome-256color';
 elif infocmp xterm-256color >/dev/null 2>&1; then
@@ -32,17 +31,17 @@ if tput setaf 1 &> /dev/null; then
   yellow=$(tput setaf 136);
 else
   bold='';
-  reset="\e[0m";
-  black="\e[1;30m";
-  blue="\e[1;34m";
-  cyan="\e[1;36m";
-  green="\e[1;32m";
-  orange="\e[1;33m";
-  purple="\e[1;35m";
-  red="\e[1;31m";
-  violet="\e[1;35m";
-  white="\e[1;37m";
-  yellow="\e[1;33m";
+  reset='';
+  black='';
+  blue='';
+  cyan='';
+  green='';
+  orange='';
+  purple='';
+  red='';
+  violet='';
+  white='';
+  yellow='';
 fi;
 
 rubehappy="${orange}(◕‿◕)${yellow}";
@@ -164,9 +163,19 @@ function score_game() {
   esac;
 }
 
+function write_history() {
+  if [ -n "$ZSH_VERSION" ]; then
+    fc -AI
+  elif [ -n "$BASH_VERSION" ]; then
+    history -w
+  else
+
+  fi
+}
+
 # Configure history to work the way we want to.
 export HISTFILE=~/.rubegoldbash_history
-history -w
+write_history
 rm -f ~/.rubegoldbash_history
 touch ~/.rubegoldbash_history
 export HISTIGNORE=''
@@ -175,23 +184,24 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTCONTROL=ignoreboth:erasedups
 
-# When the shell exits, append to the history file instead of overwriting it
-shopt -s histappend
-
 # After each command, append to the history file and reread it
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}score_game"
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
 
-# OS X has no `md5sum`, so use `md5` as a fallback
-command -v md5sum > /dev/null || alias md5sum="md5"
-# OS X has no `sha1sum`, so use `shasum` as a fallback
-command -v sha1sum > /dev/null || alias sha1sum="shasum"
+if [ -n "$ZSH_VERSION" ]; then
+
+elif [ -n "$BASH_VERSION" ]; then
+  # When the shell exits, append to the history file instead of overwriting it
+  shopt -s histappend
+  # Case-insensitive globbing (used in pathname expansion)
+  shopt -s nocaseglob;
+  # Autocorrect typos in path names when using `cd`
+  shopt -s cdspell;
+else
+
+fi
 
 # Nice prompt from https://github.com/necolas/dotfiles.
 
@@ -227,7 +237,7 @@ export PS2;
 
 # Share your results online!
 function share() {
-  history -w
+  write_history
 
   local voice=$([ $[ $RANDOM % 2 ] == 0 ] && echo "Victoria" || echo "Alex")
 
