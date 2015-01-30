@@ -33,13 +33,11 @@ exit
 
 ### Requirements
 
-Here is the list of requirements that your system must fulfill in order to run this game:
+Here is the list of requirements for the game to run on your system:
 
-- Terminal able to display colors (`xterm-256color`)
 - `bash`
-- `bc`
 - `python`
-- curl`
+- `curl`
 - `say`
 
 ## Look, screnshot!
