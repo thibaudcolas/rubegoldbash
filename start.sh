@@ -68,32 +68,19 @@ echo "${bold}${rubepoker} I'm ${orange}Rube${yellow}, the command-line guru. Nic
 echo "${bold}${rubeeager} Can you do some Rube Goldberg bash for me? A lot of pipes (${white}|${yellow}), please!${reset}"
 echo ""
 
-function calculator() {
-  local result="";
-  result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-  #                       └─ default (when `--mathlib` is used) is 20
-  #
-  if [[ "$result" == *.* ]]; then
-    # improve the output for decimal numbers
-    printf "$result" |
-    sed -e 's/^\./0./'        # add "0" for cases like ".5"` \
-        -e 's/^-\./-0./'      # add "0" for cases like "-.5"`\
-        -e 's/0*$//;s/\.$//'; # remove trailing zeros
-  else
-    printf "$result";
-  fi;
-  printf "\n";
-}
-
 # Calculates the player score!
-export BESTSCORE=$(calculator 0)
-export FIRST=$(calculator 0)
-export STAGE=$(calculator 0)
+export BESTSCORE=$((0))
+export FIRST=$((0))
+export STAGE=$((0))
 function score_game() {
   local combo='|'
-  history -a
-  history -c
-  history -r
+
+  if [ -n "$BASH_VERSION" ]; then
+    history -a
+    history -c
+    history -r
+  fi
+
   local last_command=$(cat $HISTFILE | tail -n 1)
   local multiplier=$(grep -o "$combo" <<< $last_command | wc -l)
   multiplier=$((multiplier))
@@ -109,7 +96,7 @@ function score_game() {
   fi;
 
   if [[ "$FIRST" -eq 0 ]]; then
-    export FIRST=$(calculator 1)
+    export FIRST=$((1))
     echo "${bold}${rubewink} If you need help with commands, try this: ${white}http://explainshell.com/${reset}"
     echo "${bold}${rubethinking} You can share your score with the world by using the ${white}share${yellow} command."
   else
@@ -168,8 +155,6 @@ function write_history() {
     fc -AI
   elif [ -n "$BASH_VERSION" ]; then
     history -w
-  else
-
   fi
 }
 
@@ -184,14 +169,11 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTCONTROL=ignoreboth:erasedups
 
-# After each command, append to the history file and reread it
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}score_game"
-
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
 
 if [ -n "$ZSH_VERSION" ]; then
-
+  precmd() { score_game; }
 elif [ -n "$BASH_VERSION" ]; then
   # When the shell exits, append to the history file instead of overwriting it
   shopt -s histappend
@@ -199,8 +181,9 @@ elif [ -n "$BASH_VERSION" ]; then
   shopt -s nocaseglob;
   # Autocorrect typos in path names when using `cd`
   shopt -s cdspell;
-else
 
+  # After each command, append to the history file and reread it
+  export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}score_game"
 fi
 
 # Nice prompt from https://github.com/necolas/dotfiles.
@@ -217,22 +200,40 @@ else
   userStyle="${orange}";
 fi;
 
-# Set the terminal title to the current working directory.
-PS1="\[\033]0;\w\007\]";
-PS1+="\[${bold}\]\n"; # newline
-PS1+="\[${userStyle}\]\u"; # username
-PS1+="\[${white}\] playing ";
-PS1+="\[${cyan}RubeGold\]\[${green}Bash\]"; # host
-PS1+="\[${white}\] in ";
-PS1+="\[${green}\]\w"; # working directory
-PS1+="\[${white}\] — ";
-PS1+="\[${rubethinking}\]";
-PS1+="\[${yellow}\] What do we do now?";
-PS1+="\n";
-PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
-export PS1;
+if [ -n "$ZSH_VERSION" ]; then
+  # Set the terminal title to the current working directory.
+  PS1="${userStyle}%n"; # username
+  PS1+="${white} playing ";
+  PS1+="${cyan}RubeGold${green}Bash"; # host
+  PS1+="${white} in ";
+  PS1+="${green}%d"; # working directory
+  PS1+="${white} — ";
+  PS1+="${rubethinking}";
+  PS1+="${yellow} What do we do now?";
+  PS1+="
+";
+  PS1+="${white}\$ ${reset}"; # `$` (and reset color)
 
-PS2="\[${yellow}\]→ \[${reset}\]";
+  PS2="${yellow}→ ${reset}";
+else
+  # Set the terminal title to the current working directory.
+  PS1="\[\033]0;\w\007\]";
+  PS1+="\[${bold}\]\n"; # newline
+  PS1+="\[${userStyle}\]\u"; # username
+  PS1+="\[${white}\] playing ";
+  PS1+="\[${cyan}RubeGold\]\[${green}Bash\]"; # host
+  PS1+="\[${white}\] in ";
+  PS1+="\[${green}\]\w"; # working directory
+  PS1+="\[${white}\] — ";
+  PS1+="\[${rubethinking}\]";
+  PS1+="\[${yellow}\] What do we do now?";
+  PS1+="\n";
+  PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
+
+  PS2="\[${yellow}\]→ \[${reset}\]";
+fi
+
+export PS1;
 export PS2;
 
 # Share your results online!
