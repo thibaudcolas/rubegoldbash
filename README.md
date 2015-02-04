@@ -26,7 +26,7 @@ bash
 source <(curl -sL start.rubegoldbash.com)
 
 # Use share to submit your score:
-share
+rubeshare
 # Use exit to stop RubeGoldBash
 exit
 ~~~

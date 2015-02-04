@@ -98,7 +98,7 @@ function score_game() {
   if [[ "$FIRST" -eq 0 ]]; then
     export FIRST=$((1))
     echo "${bold}${rubewink} If you need help with commands, try this: ${white}http://explainshell.com/${reset}"
-    echo "${bold}${rubethinking} You can share your score with the world by using the ${white}share${yellow} command."
+    echo "${bold}${rubethinking} You can share your score with the world by using the ${white}rubeshare${yellow} command."
   else
     echo "${rubeface} Command Score:${white} $command_score${yellow}, Best: ${white}$BESTSCORE${reset}"
   fi;
@@ -124,7 +124,7 @@ function score_game() {
     ;;
     1 )
         echo "${bold}${rubeyay} You did it! ... but that was easy, I told you what to do!${reset}"
-        echo "${bold}${rubethinking} You can share your score with the world by using the ${white}share${yellow} command."
+        echo "${bold}${rubethinking} You can share your score with the world by using the ${white}rubeshare${yellow} command."
         echo "${bold}${rubehappy} Ok, let's go a little bit further. Pipe the previous command into ${white}wc -l${yellow}.${reset}"
     ;;
     2 )
@@ -140,10 +140,10 @@ function score_game() {
     4 )
         echo "${bold}${rubepoker} ${red}If you end your training now — if you choose the quick and easy path as Vader did — you will become an agent of evil.${reset}"
         echo "${bold}${rubeyay} ${white}xargs -n 1${yellow} is a powerful weapon, not to use lightly — that said, try it with ${white}curl${yellow}.${reset}"
-        echo "${bold}${rubemeh} Always pass on what you have learned. - by using the ${white}share${yellow} command.${reset}"
+        echo "${bold}${rubemeh} Always pass on what you have learned. - by using the ${white}rubeshare${yellow} command.${reset}"
     ;;
     5 )
-        echo "${bold}${rubethinking} I have nothing more to teach you, my young apprentice. Let's ${white}share${yellow}.${reset}"
+        echo "${bold}${rubethinking} I have nothing more to teach you, my young apprentice. Let's ${white}rubeshare${yellow}.${reset}"
         echo "${bold}${rubewink} You proved yourself worthy, here's something you might enjoy:${reset}"
         echo "${bold}${rubewink} ${white}telnet towel.blinkenlights.nl ${yellow}(to exit, hit ${red}^]${white} and type ${red}quit${white})${reset}"
     ;;
@@ -244,7 +244,7 @@ export PS1;
 export PS2;
 
 # Share your results online!
-function share() {
+function rubeshare() {
   write_history
 
   local description="$(whoami)'s RubeGoldBash game — $(date)"
