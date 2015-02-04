@@ -154,4 +154,5 @@ last
 cat /dev/urandom | hexdump -C | grep "ca fe"
 cat /usr/share/dict/propernames
 cat /usr/share/dict/connectives
+whatis
 ~~~
