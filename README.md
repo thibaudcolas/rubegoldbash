@@ -16,6 +16,7 @@ ______         _            _____         _      _
 
 - View the [RubeGoldBash website](http://www.rubegoldbash.com)!
 - Look at the [RubeGoldBash High Scores](http://highscore.rubegoldbash.com)!
+- Look at this [little demo](http://showterm.io/a06f7dcf548aadbbcb751)!
 
 ## Getting Started
 
