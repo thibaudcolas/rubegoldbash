@@ -58,6 +58,7 @@ The game relies on `bash` and `curl` to work, as well as other bash builtins and
 - http://ifconfig.me/
 - http://openweathermap.org/
 - http://freegeoip.net/
+- http://showterm.io/
 
 ### Command line
 
