@@ -34,7 +34,7 @@ exit
 
 The game relies on `bash` and `curl` to work, as well as other bash builtins and standard UNIX tools.
 
-## Look, screnshot!
+## Look, screenshot!
 
 ![Screenshot](rubegoldbash-screenshot.png)
 
