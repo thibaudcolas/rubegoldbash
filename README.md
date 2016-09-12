@@ -1,4 +1,4 @@
-[RubeGoldBash](http://www.rubegoldbash.com) [![Build Status](https://img.shields.io/travis/ThibWeb/rubegoldbash.svg?style=flat-square)](https://travis-ci.org/ThibWeb/rubegoldbash)
+[RubeGoldBash](http://www.rubegoldbash.com) [![Build Status](https://img.shields.io/travis/thibaudcolas/rubegoldbash.svg?style=flat-square)](https://travis-ci.org/thibaudcolas/rubegoldbash)
 ==============
 
 ~~~
@@ -46,7 +46,7 @@ The game relies on `bash` and `curl` to work, as well as other bash builtins and
 
 - http://heroku.com/
 - http://simplybuilt.com/
-- https://github.com/thibweb/dotfiles
+- https://github.com/thibaudcolas/dotfiles
 
 ### Online services
 
@@ -90,7 +90,7 @@ The game relies on `bash` and `curl` to work, as well as other bash builtins and
 
 ## Contributing
 
-- [High Score server repository](https://github.com/ThibWeb/rubegoldbash-server)
+- [High Score server repository](https://github.com/thibaudcolas/rubegoldbash-server)
 
 ## Examples of RubeGoldBash (SPOILERS!)
 
