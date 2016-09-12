@@ -4,7 +4,7 @@
 # |    / | | | ||  _ \  / _ \| | __  / _ \ | | / _  |  / __  / __ // ___/ __ \
 # | |\ \ | |_| || |_) ||  __/| |_\ \| (_) || || (_| | / /_/ / /_/ (__  ) / / /
 # \_| \_| \____||____/  \___| \____/ \___/ |_| \____//_____/\____/____/_/ /_/
-# https://github.com/ThibWeb/rubegoldbash
+# https://github.com/thibaudcolas/rubegoldbash
 # By: Thibaud Colas, License: CC0
 
 # Colors, Solarized theme from https://github.com/necolas/dotfiles
